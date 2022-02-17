@@ -94,11 +94,11 @@ body {
   grid-template-columns: min-content 1fr;
 }
 
-.projects-list__remove-project-button {
+.projects-list__delete-project-button {
   font-size: var(--font-size-3);
 }
 
-.projects-list__project-title {
+.projects-list__project-name {
   font-size: var(--font-size-3);
 }
 
