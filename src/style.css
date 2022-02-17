@@ -102,10 +102,57 @@ body {
   font-size: var(--font-size-3);
 }
 
-/* element modifiers */
+/* BLOCK - add-project-form */
+
+.add-project-form {
+  background-color: #CEEC97;
+  padding: 30px;
+  display: grid;
+  gap: 10px 10px;
+  /* justify-items: center; */
+  /* align-items: center; */
+  width: 400px;
+  height: 200px;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr;
+  /* grid-template: min-content min-content min-content / min-content min-content; */
+  /* grid-template: auto auto auto / auto auto; */
+}
+
+.add-project-form label {
+  grid-column: 1 / span 2;
+  font-size: var(--font-size-3);
+  align-self: center;
+  justify-self: center;
+}
+
+.add-project-form input {
+  font-size: var(--font-size-3);
+  grid-column: 1 / span 2;
+}
+
+.add-project-form button {
+  font-size: var(--font-size-3);
+}
+
+/* tag modifiers */
 
 button {
   padding: 5px;
+}
+
+/* general elements */
+
+.modal {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* block element modifiers */
@@ -113,4 +160,10 @@ button {
 .button--disabled {
   pointer-events: none;
   opacity: 0.5;
+}
+
+/* general modifiers */
+
+.hidden {
+  display: none;
 }
