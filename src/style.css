@@ -1,12 +1,18 @@
 :root {
   font-family: sans-serif;
 
-  --color-1: #494368;
-  --color-2: #7A28CB;
-  --color-3: #FC60A8;
-  --color-4: #CEEC97;
-  --color-5: #ffac7c;
-  --color-6: #505050;
+  --color--1: #7A28CB;
+
+  --color-1-1: #FC60A8;
+  --color-2-1: #CEEC97;
+  --color-3-1: #505050;
+
+  --font-size-1: 60px;
+  --font-size-2: 40px;
+  --font-size-3: 30px;
+  --font-size-4: 25px;
+  --font-size-5: 20px;
+  --font-size-6: 15px;
 }
 
 /* BLOCK - body */
@@ -15,29 +21,29 @@ body {
   display: grid;
   grid-template: auto 1fr auto / 1fr 60% 1fr;
   height: 100vh;
-  background-color: var(--color-6);
+  background-color: var(--color-3-1);
 }
 
-/* BLOCK - Header */
+/* BLOCK - header */
 
 .header {
   grid-row: 1 / span 1;
   grid-column: 1 / span 3;
-  background-color: var(--color-3);
+  background-color: var(--color-1-1);
   height: fit-content;
-  font-size: 60px;
+  font-size: var(--font-size-1);
   padding: 20px 0;
   text-align: center;
 }
 
-/* BLOCK - Footer */
+/* BLOCK - footer */
 
 .footer {
   grid-row: 3 / span 1;
   grid-column: 1 / span 3;
-  background-color: var(--color-3);
+  background-color: var(--color-1-1);
   height: fit-content;
-  font-size: 20px;
+  font-size: var(--font-size-6);
   padding: 20px 0;
   text-align: center;
 }
@@ -45,8 +51,66 @@ body {
 /* BLOCK - content */
 
 .content {
+  display: grid;
+  grid-template-columns: 30% 1fr;
   grid-row: 2 / span 1;
   grid-column: 2 / span 1;
-  background-color: var(--color-4);
+  background-color: var(--color-2-1);
   height: 100%;
+}
+
+/* BLOCK - projects-section */
+
+.projects-section {
+  display: grid;
+  grid-auto-rows: min-content;
+  gap: 20px 20px;
+  padding: 20px;
+  justify-items: center;
+}
+
+.projects-section__title {
+  font-size: var(--font-size-2);
+}
+
+.projects-section__add-project-button {
+  font-size: var(--font-size-3);
+  width: 80%;
+}
+
+/* BLOCK - projects-list */
+
+.projects-list {
+  display: grid;
+  row-gap: 10px;
+  width: 100%;
+  /* grid-auto-rows: auto; */
+}
+
+.projects-list__project {
+  display: grid;
+  align-items: center;
+  column-gap: 10px; 
+  grid-template-columns: min-content 1fr;
+}
+
+.projects-list__remove-project-button {
+  font-size: var(--font-size-3);
+}
+
+.projects-list__project-title {
+  font-size: var(--font-size-3);
+}
+
+/* element modifiers */
+
+button {
+  padding: 5px;
+}
+
+/* block element modifiers */
+
+.button--disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }
