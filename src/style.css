@@ -162,6 +162,10 @@ button {
   opacity: 0.5;
 }
 
+.project--selected .projects-list__project-name {
+  background-color: cornflowerblue;
+}
+
 /* general modifiers */
 
 .hidden {

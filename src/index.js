@@ -1,5 +1,6 @@
 import normalize from "./normalize.css";
 import style from "./style.css";
-import {addEvents, processProjectForm} from "./javascript/dom";
+import {initialize} from "./javascript/dom";
 
-addEvents();
+
+initialize();
