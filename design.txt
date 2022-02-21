@@ -1,0 +1,29 @@
+program loads
+  load data
+    if(localStorage.getItem("0") === null)
+      // initialize without data
+
+      let projects = [];
+      projects.push(new Project(0, "Default"))
+    else
+      // initialize with data
+
+      let projectNum;
+      let todoNum;
+
+      projectNum = 0;
+      let project = JSON.parse(localStorage.getItem("" + projectNum));
+
+      while(project !== null)
+        projects.push(project)
+
+        todoNum = 0;
+        let todo = JSON.parse(localStorage.getItem(projectNum + "_" + todoNum));
+
+        while(todo !== null)
+          project.todos.push(todo);
+          todoNum++;
+          let todo = JSON.parse(localStorage.getItem(projectNum + "_" + todoNum));
+        
+        projectNum++;
+          let project = JSON.parse(localStorage.getItem("" + projectNum));

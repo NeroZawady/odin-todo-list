@@ -27,14 +27,42 @@
 
       <div class="projects-list">
 
-        <!-- <div class="projects-list__project  project--selected">
+        <div class="projects-list__project  project--selected">
           <button class="projects-list__delete-project-button button--disabled">X</button>
           <button class="projects-list__project-name" id="default">Default</button>
-        </div> -->
+        </div>
 
       </div>
     </div>
 
+    <div class="todos-section">
+      <button class="todos-section__add-todo-button">Add Todo</button>
+
+      <div class="modal hidden">
+        <form class="add-todo-form">
+          <label for="name">Todo Name</label>
+          <input type="text" name="name" id="name" required>
+          <label for="description">Todo Description</label>
+          <input type="text" name="description" id="description">
+          <label for="dueDate">Todo Due Date</label>
+          <input type="date" name="dueDate" id="dueDate">
+          <div>Todo Priority</div>
+          <input type="radio" id="low" name="priority" value="0">
+          <label for="low">Low</label>
+          <input type="radio" id="medium" name="priority" value="1" checked>
+          <label for="medium">Medium</label>
+          <input type="radio" id="high" name="priority" value="2">
+          <label for="high">High</label>
+          <button type="reset">Cancel</button>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <div class="todos-list">
+
+      </div>
+
+    </div>
   </div>
 
   <div class="footer">Example Todo List App</div>
