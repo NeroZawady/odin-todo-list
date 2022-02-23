@@ -52,3 +52,20 @@ function createElement(tag, text, classes) {
 
   return element;
 }
+
+export function openProjectForm() {
+  let projectForm = document.querySelector(".add-project-form");
+  projectForm.parentElement.classList.remove("hidden");
+  projectForm.querySelector("input").focus();
+}
+
+export function closeProjectForm() {
+  let projectForm = document.querySelector(".add-project-form");
+  projectForm.parentElement.classList.add("hidden");
+  projectForm.reset();
+}
+
+export function deleteProject(projectContainer, projectId) {
+  let projectTodos = todoListsListElement.children[projectId].remove();
+  projectContainer.remove();
+}

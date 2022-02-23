@@ -3,6 +3,8 @@ import * as View from "./View.js";
 import {Project} from "./Project.js";
 
 
+let selectedProjectId = 0;
+
 export function initialize() {
   if(Model.getProjects().length === 0) {
     Model.addProject(new Project(0, "Default"));
@@ -25,13 +27,13 @@ export function initialize() {
 
 function addEvents() {
   let addProjectButton = document.querySelector(".projects-section__add-project-button");
-  addProjectButton.addEventListener("click", () => openProjectForm());
+  addProjectButton.addEventListener("click", () => View.openProjectForm());
 
   let cancelProjectButton = document.querySelector('.add-project-form button[type="reset"]');
-  cancelProjectButton.addEventListener("click", () => closeProjectForm());
+  cancelProjectButton.addEventListener("click", () => View.closeProjectForm());
 
   let projectForm = document.querySelector(".add-project-form");
-  projectForm.addEventListener("submit", () => processForm());
+  projectForm.addEventListener("submit", () => processProjectForm());
 
   let deleteProjectButtons = document.querySelectorAll(".projects-list__delete-project-button");
   for(let deleteProjectButton of deleteProjectButtons)
@@ -43,61 +45,60 @@ function addEvents() {
 
 }
 
-function openProjectForm() {
-  let projectForm = document.querySelector(".add-project-form");
-  projectForm.parentElement.classList.remove("hidden");
-  projectForm.querySelector("input").focus();
-}
-
-function closeProjectForm() {
-  let projectForm = document.querySelector(".add-project-form");
-  projectForm.parentElement.classList.add("hidden");
-  projectForm.reset();
-}
-
-function processForm() {
-  let projectForm = document.querySelector(".add-project-form");
-  let projectName = projectForm.querySelector("input").value;
-
+function processProjectForm() {
+  let projectName = document.querySelector(".add-project-form input").value;
+  
   Model.addProject(new Project(Model.getNumberOfProjects(), projectName));
   View.loadProject(projectName);
 
-  projectForm.parentElement.classList.add("hidden");
-  projectForm.reset();
-  event.preventDefault();
+  View.closeProjectForm();
+  // event.preventDefault(); // CHECK - do I need this?
 }
 
 function deleteProject(e) {
-  let projectsListElement = document.querySelector(".projects-list");
-  let todoListsListElement = document.querySelector(".todo-lists");
   let projectContainer = e.target.parentElement;
-  let i;
+  let projectId = getProjectId(projectContainer);
 
-  for(i = 0; i < projectsListElement.children.length; i++) {
-    if(projectContainer === projectsListElement.children[i]) break;
-  }
+  if(projectId === selectedProjectId) selectedProjectId = 0;
 
-  let projectTodos = todoListsListElement.children[i];
-  projectTodos.remove();
-  projectContainer.remove();
-  Model.deleteProject(i);
+  View.deleteProject(projectContainer, projectId);
+  Model.deleteProject(projectId);
 }
 
 function selectProject(e) {
   let projectsListElement = document.querySelector(".projects-list");
   let todoListsListElement = document.querySelector(".todo-lists");
   let projectContainer = e.target.parentElement;
-  let i;
 
+  let i;
   for(i = 0; i < projectsListElement.children.length; i++) {
     if(projectContainer === projectsListElement.children[i]) break;
   }
 
   let projectTodos = todoListsListElement.children[i];
-  projectsListElement.children[Model.getSelectedProjectId()].classList.remove("project--selected");
+  projectsListElement.children[selectedProjectId].classList.remove("project--selected");
   projectContainer.classList.add("project--selected");
-  Model.setSelectedProjectId(i);
-  todoListsListElement.children[Model.getSelectedProjectId()].classList.remove("todo-lists__project-todos--selected");
+  selectedProjectId = i;
+  todoListsListElement.children[selectedProjectId].classList.remove("todo-lists__project-todos--selected");
   projectTodos.classList.add("todo-lists__project-todos--selected");
+}
 
+function getProjectId(projectContainer) {
+  let projectsListElement = document.querySelector(".projects-list");
+  let projectId;
+
+  for(projectId = 0; projectId < projectsListElement.children.length; projectId++) {
+    if(projectContainer === projectsListElement.children[projectId]) break;
+  }
+
+  return projectId;
+}
+
+function getProjectContainer(projectId) {
+  let projectsListElement = document.querySelector(".projects-list");
+  return projectsListElement[projectId];
+}
+
+function getSelectedProjectContainer() {
+  return document.querySelector(".projects-list").children[selectedProjectId];
 }
