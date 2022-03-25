@@ -2,26 +2,16 @@ import * as Controller from "./Controller";
 import { TodosList } from "./TodosList";
 
 
-export class Project {
+export class DefaultProject {
   #projectElement;
-  #projectNumber;
   #todoList;
 
-  constructor(loadFromStorage, projectNumber, projectName) {
-    loadFromStorage === true ? this.#initializeFromStorage() : this.initializeNoStorage();
-    this.#projectElement = this.#createProjectElement(projectName);
-    this.#projectNumber = projectNumber;
+  constructor() {
+    this.#projectElement = this.#createProjectElement("Default");
+    this.#projectNumber = 0;
     this.todoList = new TodosList();
 
-    localStorage.setItem("project-" + this.#projectNumber);
-  }
-
-  #initializeNoStorage() {
-    
-  }
-
-  #initializeFromStorage() {
-    
+    localStorage.setItem("project-0");
   }
 
   addTodo() {
@@ -34,10 +24,6 @@ export class Project {
 
   completeTodo() {
 
-  }
-
-  setProjectNumber(projectNumber) {
-    this.#projectNumber = projectNumber;
   }
 
   #createProjectElement(projectName) {

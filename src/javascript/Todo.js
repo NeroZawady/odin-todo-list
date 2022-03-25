@@ -1,3 +1,6 @@
+import * as Controller from "./Controller";
+
+
 export class Todo {
   #todoList;
   #todoElement;
@@ -10,19 +13,5 @@ export class Todo {
     this.dueDate = dueDate;
     this.priority = priority;
 
-  }
-
-  #createElement(tag, text, classes) {
-    let element = document.createElement(tag);
-    
-    if(text !== null) element.innerHTML = text;
-  
-    if(classes !== null) {
-      for(let c of classes) {
-        element.classList.add(c);
-      }
-    }
-  
-    return element;
   }
 }

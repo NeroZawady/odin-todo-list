@@ -1,22 +1,3 @@
-
-
-
-
-
-
-
-
-
-// Update project number when deleting a project
-
-
-
-
-
-
-
-
-
 import * as Model from "./Model.js";
 import * as View from "./View.js";
 import {Project} from "./Project.js";
@@ -25,6 +6,20 @@ import {Project} from "./Project.js";
 let selectedProjectNumber = 0;
 export let projectsListElement = document.querySelector(".projects-list");
 export let todoListsElement = document.querySelector(".todo-lists");
+
+export function createElement(tag, text, classes) {
+  let element = document.createElement(tag);
+  
+  if(text !== null) element.innerHTML = text;
+
+  if(classes !== null) {
+    for(let c of classes) {
+      element.classList.add(c);
+    }
+  }
+
+  return element;
+}
 
 export function initialize() {
   if(Model.projects.length === 0) {

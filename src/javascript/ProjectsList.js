@@ -1,23 +1,39 @@
+import { DefaultProject } from "./DefaultProject";
 import { Project } from "./Project";
-import { TodoList } from "./TodosList";
 
 
 export class ProjectsList {
-  #projectsListElement;
-  #todoListsElement;
   #projects;
-  #todoLists;
 
   constructor() {
-    this.#projectsListElement = document.querySelector(".projects-list");
-    this.#todoListsElement = document.querySelector(".todo-lists");
+    let numberOfProjects = JSON.parse(localStorage.getItem("numberOfProjects"));
+    numberOfProjects === null ? this.#initializeNoStorage() : this.#initializeFromStorage(numberOfProjects);
+  }
+
+  #initializeNoStorage() {
     this.#projects = [];
-    this.#todoLists = [];
-}
+    this.#addDefaultProject();
+  }
+
+  #initializeFromStorage(numberOfProjects) {
+    // this.projects = JSON.parse(localStorage.getItem("projects"));
+    this.#projects.push(new DefaultProject());
+
+    for(i = 1; i < numberOfProjects; i++) {
+      this.#projects.push(new Project(this.#projects.length, projectName));
+    }
+  }
+  
+  #addDefaultProject() {
+    this.#projects.push(new DefaultProject());
+    localStorage.setItem("numberOfProjects", 1);
+    // localStorage.setItem("projects", this.#projects);
+  }
 
   addProject(projectName) {
-    this.#projects.push(new Project(this, projectName, this.#projects.length));
-    this.#todoLists.push(new TodoList())
+    this.#projects.push(new Project(this.#projects.length, projectName));
+    localStorage.setItem("numberOfProjects", this.#projects.length + 1);
+    // localStorage.setItem("projects", this.#projects);
   }
 
   removeProject(projectNumber) {
@@ -31,23 +47,5 @@ export class ProjectsList {
 
   getNumberOfProjects() {
     return this.#projects.length;
-  }
-
-  getProjectsListElement() {
-    return this.#projectsListElement;
-  }
-
-  #createElement(tag, text, classes) {
-    let element = document.createElement(tag);
-    
-    if(text !== null) element.innerHTML = text;
-  
-    if(classes !== null) {
-      for(let c of classes) {
-        element.classList.add(c);
-      }
-    }
-  
-    return element;
   }
 }

@@ -1,13 +1,16 @@
+import * as Controller from "./Controller";
 import { Todo } from "./Todo";
 
 
 export class TodoList {
-  #todoListElement
-  #todo;
+  #todoListElement;
+  #todos;
 
-  constructor() {
+  constructor(projectNumber) {
     this.#todoListElement = this.#createTodoListElement();
-    this.#todo = [];
+    this.#todos = [];
+
+    localStorage.setItem("project-" + projectNumber + "-todoList");
   }
 
   addTodo(name, description, dueDate, priority) {
@@ -19,20 +22,7 @@ export class TodoList {
   }
 
   #createTodoListElement() {
-    let 
-  }
-
-  #createElement(tag, text, classes) {
-    let element = document.createElement(tag);
-    
-    if(text !== null) element.innerHTML = text;
-  
-    if(classes !== null) {
-      for(let c of classes) {
-        element.classList.add(c);
-      }
-    }
-  
-    return element;
+    let todoListElement = Controller.createElement("div", null, ["todo-lists__project-todo-list"]);
+    Controller.todoListsElement.append(todoListElement);
   }
 }
