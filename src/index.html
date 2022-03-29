@@ -19,9 +19,9 @@
       <div class="modal hidden">
         <form class="add-project-form">
           <label for="name">Project Name</label>
-          <input type="text" name="name" id="name" required>
-          <button type="reset">Cancel</button>
-          <button type="submit">Submit</button>
+          <input type="text" name="name" id="name" required value="A">
+          <button type="reset" class="add-project-form__cancel">Cancel</button>
+          <button type="submit" class="add-project-form__submit">Submit</button>
         </form>
       </div>
 
@@ -41,11 +41,11 @@
       <div class="modal hidden">
         <form class="add-todo-form">
           <label for="name">Todo Name</label>
-          <input type="text" name="name" id="name" required>
+          <input type="text" name="name" id="name" required value="Todo Name">
           <label for="description">Todo Description</label>
-          <input type="text" name="description" id="description">
+          <input type="text" name="description" id="description" value="Todo Description">
           <label for="dueDate">Todo Due Date</label>
-          <input type="date" name="dueDate" id="dueDate">
+          <input type="date" name="dueDate" id="dueDate" value="2022-03-28">
           <div>Todo Priority</div>
           <input type="radio" id="low" name="priority" value="0">
           <label for="low">Low</label>
@@ -53,14 +53,41 @@
           <label for="medium">Medium</label>
           <input type="radio" id="high" name="priority" value="2">
           <label for="high">High</label>
-          <button type="reset">Cancel</button>
-          <button type="submit">Submit</button>
+          <button type="reset" class="add-todo-form__cancel">Cancel</button>
+          <button type="submit" class="add-todo-form__submit">Submit</button>
+        </form>
+      </div>
+
+      <div class="modal hidden">
+        <form class="edit-todo-form">
+          <label for="name">Todo Name</label>
+          <input type="text" name="name" id="name" required value="Todo Name">
+          <label for="description">Todo Description</label>
+          <input type="text" name="description" id="description">
+          <label for="dueDate">Todo Due Date</label>
+          <input type="date" name="dueDate" id="dueDate" value="2022-03-28">
+          <div>Todo Priority</div>
+          <input type="radio" id="low" name="priority" value="0">
+          <label for="low">Low</label>
+          <input type="radio" id="medium" name="priority" value="1" checked>
+          <label for="medium">Medium</label>
+          <input type="radio" id="high" name="priority" value="2">
+          <label for="high">High</label>
+          <input type="hidden" name="todoNumber">
+          <button type="reset" class="edit-todo-form__cancel">Cancel</button>
+          <button type="submit" class="edit-todo-form__confirm">Confirm</button>
         </form>
       </div>
 
       <div class="todo-lists">
         <!-- <div class="todo-lists__project-todo-list">
-          <div class="project-todo">
+          <div class="todo">
+            <button class="todo__complete-todo-button">&#x2713</button>
+            <div class="todo__name">Todo Name</div>
+            <div class="todo__description">Todo Description</div>
+            <div class="todo__due-date">Todo Due Date</div>
+            <div class="todo__priority">Todo Priority</div>
+            <button class="todo__edit-todo-button">Edit</button>
           </div>
         </div> -->
       </div>

@@ -134,6 +134,17 @@ body {
   font-size: var(--font-size-3);
 }
 
+/* BLOCK - todo */
+
+.todo {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  align-items: center;
+  border: 10px solid transparent;
+}
+
 /* tag modifiers */
 
 button {
